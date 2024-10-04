@@ -99,12 +99,12 @@ class Version():
 
 
 def parse_profile(filename):
-    comment_pattern = re.compile('\s*#.*$|\s+$')
-    version_pattern = re.compile('\s*version\s+(\d)\.(\d)(\.(\d+))?\s*(core|compatibility|es|vulkan|)\s*$')
-    extraspec_pattern = re.compile('\s*extraspec\s+([^\s]+)\s*$')
-    extension_pattern = re.compile('\s*extension\s+(\w+)\s+(required|optional)\s*$')
-    functions_pattern = re.compile('\s*(begin|end) functions\s+(blacklist)?$')
-    function_pattern = re.compile('\s*[A-Z][A-Za-z0-9]+$')
+    comment_pattern = re.compile(r'\s*#.*$|\s+$')
+    version_pattern = re.compile(r'\s*version\s+(\d)\.(\d)(\.(\d+))?\s*(core|compatibility|es|vulkan|)\s*$')
+    extraspec_pattern = re.compile(r'\s*extraspec\s+([^\s]+)\s*$')
+    extension_pattern = re.compile(r'\s*extension\s+(\w+)\s+(required|optional)\s*$')
+    functions_pattern = re.compile(r'\s*(begin|end) functions\s+(blacklist)?$')
+    function_pattern = re.compile(r'\s*[A-Z][A-Za-z0-9]+$')
 
     version = None
     extraspec = []
@@ -331,7 +331,7 @@ def extract_names(feature, selector):
     return [element.attrib['name'] for element in feature.findall('./%s[@name]' % selector)]
 
 def parse_int_version(version_str):
-    version_pattern = re.compile('(\d)\.(\d)')
+    version_pattern = re.compile(r'(\d)\.(\d)')
     match = version_pattern.match(version_str)
     return int(match.group(1)) * 10 + int(match.group(2))
 

@@ -1,21 +1,15 @@
 version: 2.1
 
-notify:
-  webhooks:
-    # Unfortunately Gitter messages are too verbose (one five-line message per
-    # each job in the build matrix) and thus not wanted
-    #- url: https://webhooks.gitter.im/e/cfbadbd34d28708a57c6
-
 executors:
-  python-3_5:
+  python-3_08:
     docker:
-    - image: python:3.5.10
-  python-3_6:
+    - image: python:3.8.20
+  python-3_09:
     docker:
-    - image: python:3.6.12
-  python-3_7:
+    - image: python:3.9.20
+  python-3_10:
     docker:
-    - image: python:3.7.9
+    - image: python:3.10.15
 
 commands:
   build:
@@ -32,18 +26,18 @@ commands:
         command: codecov
 
 jobs:
-  py35:
-    executor: python-3_5
+  py308:
+    executor: python-3_08
     steps:
     - build
 
-  py36:
-    executor: python-3_6
+  py309:
+    executor: python-3_09
     steps:
     - build
 
-  py37:
-    executor: python-3_7
+  py310:
+    executor: python-3_10
     steps:
     - build
 
@@ -51,6 +45,6 @@ workflows:
   version: 2
   build:
     jobs:
-    - py35
-    - py36
-    - py37
+    - py308
+    - py309
+    - py310
